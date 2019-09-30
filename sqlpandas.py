@@ -6,13 +6,7 @@ class sqlpandas(Magics):
 
    @line_cell_magic  
    def sql(self, line, cell=None):
-       #if cell and line:
-       #    raise ValueError("Line must be empty for cell magic", line)
-       #from autovizwidget.widget.utils import display_dataframe
-
-       #df_resultsql = ps.sqldf(cell or line, get_ipython().user_ns)
-       #return display_dataframe(df_resultsql)
-       return ps.sqldf(cell or line, get_ipython().user_ns)
+        return ps.sqldf(cell or line, get_ipython().user_ns)
 
 ip = get_ipython()
 ip.register_magics(sqlpandas)
