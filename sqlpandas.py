@@ -6,7 +6,13 @@ class sqlpandas(Magics):
 
    @line_cell_magic  
    def sql(self, line, cell=None):
-        return ps.sqldf(cell or line, get_ipython().user_ns)
+        if line.strip() != '':
+            resdf = ps.sqldf(cell or line, get_ipython().user_ns)
+            get_ipython().user_ns[line.strip()] = resdf
+            return resdf
+        else: 
+            return ps.sqldf(cell or line, get_ipython().user_ns)
+            
 
 ip = get_ipython()
 ip.register_magics(sqlpandas)
